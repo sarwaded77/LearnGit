@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accident Severity Prediction</title>
+    <script>
+    <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <a href="page1.html">
+  <title>Accident Severity Prediction</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="./static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="./static/css2/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+</head>
+
+
+        function predictSeverity() {
+            // Get the values from the input fields
+            var speed = parseInt(document.getElementById("speed").value);
+            var weather = document.getElementById("weather").value;
+            var severity;
+
+            // Simple prediction logic using if-else
+            if (speed > 60 && weather === "Rain") {
+                severity = "High Severity: Likely serious injuries.";
+            } else if (speed > 40 && weather === "Rain") {
+                severity = "Moderate Severity: Possible injuries.";
+            } else if (speed > 60 && weather === "Clear") {
+                severity = "Moderate Severity: Possible injuries.";
+            } else if (speed <= 40 && weather === "Clear") {
+                severity = "Low Severity: Minor injuries or no injuries.";
+            } else {
+                severity = "Low Severity: Safe conditions.";
+            }
+
+            // Display the result
+            document.getElementById("result").innerText = severity;
+        }
+    </script>
+</head>
+<body>
+    <h1>Accident Severity Prediction</h1>
+    <form onsubmit="event.preventDefault(); predictSeverity();">
+        <label for="speed">Enter Speed (mph):</label>
+        <input type="number" id="speed" required>
+        <br><br>
+        
+        <label for="weather">Select Weather Condition:</label>
+        <select id="weather" required>
+            <option value="">--Select--</option>
+            <option value="Clear">Clear</option>
+            <option value="Rain">Rain</option>
+            <option value="Fog">Fog</option>
+            <option value="Snow">Snow</option>
+        </select>
+        <br><br>
+        
+        <button type="submit">Predict Severity</button>
+    </form>
+    
+    <h2 id="result"></h2>
+</body>
+</html>
